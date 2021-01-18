@@ -51,7 +51,7 @@ class _ProfileState extends State<Profile> {
 
   Widget _buildAvatar() {
     return new CircleAvatar(
-      backgroundImage: new NetworkImage("https://alcosafe.000webhostapp.com/users/"+username+".jpg"),
+      backgroundImage: new NetworkImage("http://api.par-mobile.com/cekaja/users/"+username+".jpg"),
       radius: 90.0,
     );
   }
@@ -72,7 +72,7 @@ class _ProfileState extends State<Profile> {
   Future<bool> getInfo() async {
 
     final res = await http
-        .post("https://alcosafe.000webhostapp.com/profile.php", body: {
+        .post("http://api.par-mobile.com/cekaja/profile.php", body: {
       "name": name,
     });
 
@@ -83,7 +83,7 @@ class _ProfileState extends State<Profile> {
     cardno = lis['cardno'];
     email = lis['email'];
 
-    link= "https://alcosafe.000webhostapp.com/users/"+username+".jpg";
+    link= "http://api.par-mobile.com/cekaja/users/"+username+".jpg";
 
     // only for debug
     print(username);
