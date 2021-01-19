@@ -150,7 +150,7 @@ class SecondScreen extends State<SecondScreenState> {
   SecondScreen(this.noPolisi);
 
   // API URL
-  var url = 'https://api.par-mobile.com/cekaja/getAssetMobilJson.php-2';
+  var url = 'https://api.par-mobile.com/cekaja/getAssetMobilJson-2.php';
 
   Future<List<Assetmobil>> fetchAssets() async {
     var data = {'noPolisi': noPolisi};

@@ -12,7 +12,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Cek Aja"
+        android:label="CekAja"
         android:icon="@mipmap/launcher_icon"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
