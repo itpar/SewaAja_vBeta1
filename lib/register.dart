@@ -72,7 +72,14 @@ class _RegisterState extends State<Register> {
           return SizedBox (
             width: 82,
             height: 82,
-            child: Image.asset('assets/images/avatar.png',
+            child: CircleAvatar(
+              radius: 55,
+              backgroundColor: Color(0xffFDCF09),
+              child: CircleAvatar(
+                radius: 50,
+                child: Image.asset('assets/images/avatar.png',
+                ),
+              ),
             ),
           );
         }
@@ -116,7 +123,7 @@ class _RegisterState extends State<Register> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color(0xFF1280C4).withOpacity(0.8),
         textColor: Colors.white);
   }
 
@@ -142,8 +149,8 @@ class _RegisterState extends State<Register> {
                       SizedBox(
                         height: 50,
                         child: Text(
-                          "create Account",
-                          style: TextStyle(color: Colors.blue[900], fontSize: 35.0, fontWeight: FontWeight.bold),
+                          "Create Account",
+                          style: TextStyle(color: const Color(0xFF1280C4).withOpacity(0.8), fontSize: 35.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Card(
@@ -157,7 +164,7 @@ class _RegisterState extends State<Register> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0)),
                               child: Text("add profile picture"),
-                              textColor: Colors.blue[800],
+                              textColor: const Color(0xFF1280C4).withOpacity(0.8),
                               color: Colors.white,
                               onPressed: () {
                                 pickImage(ImageSource.gallery);
@@ -177,7 +184,7 @@ class _RegisterState extends State<Register> {
                           controller: us,
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "username ";
+                              return "Username Empty";
                             }
                           },
                           onSaved: (e) => username = e,
@@ -189,10 +196,10 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.all_inclusive, color: Colors.blue),
+                                child: Icon(Icons.all_inclusive, color: const Color(0xFF1280C4).withOpacity(0.8)),
                               ),
                               contentPadding: EdgeInsets.all(18),
-                              labelText: "username"),
+                              labelText: "Username"),
                         ),
                       ),
 
@@ -203,7 +210,7 @@ class _RegisterState extends State<Register> {
                           controller: fn,
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "first name ";
+                              return "First Name Empty";
                             }
                           },
                           onSaved: (e) => fname = e,
@@ -215,10 +222,10 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.blur_on, color: Colors.blue),
+                                child: Icon(Icons.blur_on, color: const Color(0xFF1280C4).withOpacity(0.8)),
                               ),
                               contentPadding: EdgeInsets.all(18),
-                              labelText: "fname"),
+                              labelText: "First Name"),
                         ),
                       ),
 
@@ -229,7 +236,7 @@ class _RegisterState extends State<Register> {
                           controller: sn,
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "surname";
+                              return "Last Name Empty";
                             }
                           },
                           onSaved: (e) => sname = e,
@@ -241,10 +248,10 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 20, right: 15),
-                              child: Icon(Icons.blur_on, color: Colors.blue),
+                              child: Icon(Icons.blur_on, color: const Color(0xFF1280C4).withOpacity(0.8)),
                             ),
                             contentPadding: EdgeInsets.all(18),
-                            labelText: "sname",
+                            labelText: "Last Name",
                           ),
                         ),
                       ),
@@ -256,7 +263,7 @@ class _RegisterState extends State<Register> {
                           controller: car,
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "Debit/ Credit card number";
+                              return "NIK Empty";
                             }
                           },
                           onSaved: (e) => cardno = e,
@@ -268,10 +275,10 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 20, right: 15),
-                              child: Icon(Icons.view_week, color: Colors.blue),
+                              child: Icon(Icons.view_week, color: const Color(0xFF1280C4).withOpacity(0.8)),
                             ),
                             contentPadding: EdgeInsets.all(18),
-                            labelText: "cardno",
+                            labelText: "NIK",
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -284,7 +291,7 @@ class _RegisterState extends State<Register> {
                           controller: em,
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "email address ";
+                              return "Email Address Empty";
                             }
                           },
                           onSaved: (e) => email = e,
@@ -296,10 +303,10 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.email, color: Colors.blue),
+                                child: Icon(Icons.email, color: const Color(0xFF1280C4).withOpacity(0.8)),
                               ),
                               contentPadding: EdgeInsets.all(18),
-                              labelText: "email"),
+                              labelText: "E-Mail"),
                         ),
                       ),
 
@@ -325,7 +332,7 @@ class _RegisterState extends State<Register> {
                               prefixIcon: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 15),
                                 child: Icon(Icons.vpn_key,
-                                    color: Colors.blue),
+                                    color: const Color(0xFF1280C4).withOpacity(0.8)),
                               ),
                               contentPadding: EdgeInsets.all(18),
                               labelText: "Password"),
@@ -345,11 +352,11 @@ class _RegisterState extends State<Register> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0)),
                                 child: Text(
-                                  "create account",
+                                  "Create Account",
                                   style: TextStyle(fontSize: 18.0),
                                 ),
                                 textColor: Colors.white,
-                                color: Colors.blue[900],
+                                color: const Color(0xFF1280C4).withOpacity(0.8),
                                 onPressed: () {
                                   check();
                                 }),
@@ -363,7 +370,7 @@ class _RegisterState extends State<Register> {
                                   "Login",
                                   style: TextStyle(fontSize: 18.0),
                                 ),
-                                textColor: Colors.blueGrey,
+                                textColor: const Color(0xFF1280C4).withOpacity(0.8),
                                 color: Colors.white,
                                 onPressed: () {
                                   Navigator.pop(context);

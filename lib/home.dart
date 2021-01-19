@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
             BottomNavyBarItem(
               icon: Icon(Icons.person),
               title: Text('Profile'),
-              activeColor: Colors.purpleAccent,
+              activeColor: const Color(0xFF1280C4).withOpacity(0.8),
               inactiveColor: Colors.blueGrey,
             ),
           ],

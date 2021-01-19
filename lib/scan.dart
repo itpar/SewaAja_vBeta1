@@ -1,20 +1,9 @@
-//import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-//import 'package:spring_button/spring_button.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
-//import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-//import 'package:cached_network_image/cached_network_image.dart';
-
-//import 'package:url_launcher/url_launcher.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class Assetmobil {
-  //int mobilid;
-  //String mobilnoPolisi;
-  //int mobilnoRangka;
-  //String mobilnoMesin;
   int mobilid;
   String mobilnoPolisi;
   String mobilnoRangka;
@@ -79,7 +68,7 @@ Widget button(String text, Color color) {
 
 class _ScanState extends State<Scan> {
 
-  final String apiURL = 'https://api.par-mobile.com/readAssetMobilJson.php';
+  final String apiURL = 'https://api.par-mobile.com/cekaja/readAssetMobilJson-2.php';
 
   Future<List<Assetmobil>> fetchAssets() async {
     var response = await http.get(apiURL);
@@ -97,7 +86,7 @@ class _ScanState extends State<Scan> {
     }
   }
 
-  navigateToNextActivity(BuildContext context, int dataHolder) {
+  navigateToNextActivity(BuildContext context, String dataHolder) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => SecondScreenState(dataHolder.toString())));
   }
@@ -110,28 +99,36 @@ class _ScanState extends State<Scan> {
         if (!snapshot.hasData)
           return Center(child: CircularProgressIndicator());
 
-        return ListView(
-          children: snapshot.data
-              .map((data) => Column(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  navigateToNextActivity(context, data.mobilid);
-                },
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                          child: Text(data.mobilnoPolisi,
-                              style: TextStyle(fontSize: 21),
-                              textAlign: TextAlign.left))
-                    ]),
-              ),
-              Divider(color: Colors.black),
-            ],
-          ))
-              .toList(),
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("sakoaks"),
+            backgroundColor: Colors.blueAccent,
+          ),
+
+
+          body: ListView(
+            children: snapshot.data
+                .map((data) => Column(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    navigateToNextActivity(context, data.mobilnoPolisi);
+                  },
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                            child: Text(data.mobilnoPolisi,
+                                style: GoogleFonts.roboto(fontSize: 20),
+                                textAlign: TextAlign.left))
+                      ]),
+                ),
+                Divider(color: Colors.black),
+              ],
+            ))
+                .toList(),
+          ),
         );
       },
     );
@@ -139,24 +136,24 @@ class _ScanState extends State<Scan> {
 }
 
 class SecondScreenState extends StatefulWidget {
-  final String idHolder;
-  SecondScreenState(this.idHolder);
+  final String noPolisi;
+  SecondScreenState(this.noPolisi);
   @override
   State<StatefulWidget> createState() {
-    return SecondScreen(this.idHolder);
+    return SecondScreen(this.noPolisi);
   }
 }
 
 class SecondScreen extends State<SecondScreenState> {
-  final String idHolder;
+  final String noPolisi;
 
-  SecondScreen(this.idHolder);
+  SecondScreen(this.noPolisi);
 
   // API URL
-  var url = 'https://api.par-mobile.com/getAssetMobilJson.php';
+  var url = 'https://api.par-mobile.com/cekaja/getAssetMobilJson.php-2';
 
   Future<List<Assetmobil>> fetchAssets() async {
-    var data = {'id': int.parse(idHolder)};
+    var data = {'noPolisi': noPolisi};
 
     var response = await http.post(url, body: json.encode(data));
 
@@ -180,7 +177,7 @@ class SecondScreen extends State<SecondScreenState> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-                title: Text('Showing Selected Item Details'),
+                title: Text('Showing Selected Item Details', style: GoogleFonts.roboto(fontSize: 20),),
                 automaticallyImplyLeading: true,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back),
@@ -209,48 +206,48 @@ class SecondScreen extends State<SecondScreenState> {
                                   EdgeInsets.fromLTRB(0, 20, 0, 10),
                                   child: Text(
                                       'ID = ' + data.mobilid.toString(),
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'No. Polisis = ' +
                                           data.mobilnoPolisi,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'No. Rangka = ' +
                                           data.mobilnoRangka,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'No. Mesin = ' +
                                           data.mobilnoMesin,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'Keterangan = ' +
                                           data.mobilketerangan,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'Status = ' + data.mobilstatus,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Text(
                                       'QR Ref = ' +
                                           data.mobilrefNumberQrCode,
-                                      style: TextStyle(fontSize: 21))),
+                                      style: GoogleFonts.roboto(fontSize: 20))),
                             ]),
                       )
                     ],

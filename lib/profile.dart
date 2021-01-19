@@ -1,6 +1,7 @@
 import 'package:alco_safe/scan.dart';
 import 'package:alco_safe/ui/background.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,6 @@ class Profile extends StatefulWidget {
 enum LoginStatus { signedOut, signedIn }
 
 class _ProfileState extends State<Profile> {
-
   @override
   void initState() {
     getPref();
@@ -32,8 +32,8 @@ class _ProfileState extends State<Profile> {
   String name;
   LoginStatus _loginStatus = LoginStatus.signedIn;
 
-  String username="", email="", fname="", sname="", cardno="";
-  String link="";
+  String username = "", email = "", fname = "", sname = "", cardno = "";
+  String link = "";
 
   Widget background(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -45,18 +45,17 @@ class _ProfileState extends State<Profile> {
         height: 280.0,
         fit: BoxFit.cover,
       ),
-      color: const Color(0xBB8338f4),
+      color: const Color(0xFF1280C4),
     );
   }
 
   Widget _buildAvatar() {
     return new CircleAvatar(
-      backgroundImage: new NetworkImage("http://api.par-mobile.com/cekaja/users/"+username+".jpg"),
+      backgroundImage: new NetworkImage(
+          "http://api.par-mobile.com/cekaja/users/" + username + ".jpg"),
       radius: 90.0,
     );
   }
-
-
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -66,13 +65,11 @@ class _ProfileState extends State<Profile> {
 
       _loginStatus = value == 1 ? LoginStatus.signedIn : LoginStatus.signedOut;
     });
-
   }
 
   Future<bool> getInfo() async {
-
-    final res = await http
-        .post("http://api.par-mobile.com/cekaja/profile.php", body: {
+    final res =
+        await http.post("http://api.par-mobile.com/cekaja/profile.php", body: {
       "name": name,
     });
 
@@ -83,7 +80,7 @@ class _ProfileState extends State<Profile> {
     cardno = lis['cardno'];
     email = lis['email'];
 
-    link= "http://api.par-mobile.com/cekaja/users/"+username+".jpg";
+    link = "http://api.par-mobile.com/cekaja/users/" + username + ".jpg";
 
     // only for debug
     print(username);
@@ -106,7 +103,6 @@ class _ProfileState extends State<Profile> {
 
       _loginStatus = LoginStatus.signedOut;
       Navigator.of(ptx).pushReplacementNamed("/login");
-
     });
   }
 
@@ -127,13 +123,16 @@ class _ProfileState extends State<Profile> {
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         _buildAvatar(),
-                        SizedBox (
+                        SizedBox(
                           width: 1,
                           height: 15,
                         ),
                         Text(
-                          fname+" "+sname,
-                          style: new TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold, color: Colors.white),
+                          fname + " " + sname,
+                          style: new TextStyle(
+                              fontSize: 27.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -147,10 +146,17 @@ class _ProfileState extends State<Profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("Email address :", style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purpleAccent)),
+                  Text("Email address :",
+                      style: new TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purpleAccent)),
                   Text(
                     email,
-                    style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: new TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ],
               ),
@@ -161,10 +167,17 @@ class _ProfileState extends State<Profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("User Name :", style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purpleAccent)),
+                  Text("User Name :",
+                      style: new TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purpleAccent)),
                   Text(
                     username,
-                    style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: new TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ],
               ),
@@ -175,10 +188,17 @@ class _ProfileState extends State<Profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text("Credit Card :", style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purpleAccent)),
+                  Text("Credit Card :",
+                      style: new TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purpleAccent)),
                   Text(
                     cardno,
-                    style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: new TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ],
               ),
@@ -193,20 +213,22 @@ class _ProfileState extends State<Profile> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox (
+              SizedBox(
                 width: 1,
                 height: 10,
               ),
               Text(
                 username,
-                style: new TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                style: new TextStyle(
+                    fontSize: 27.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple),
               ),
             ],
           );
         }
       },
     );
-
   }
 
   @override
@@ -217,23 +239,22 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         title: Text("profile"),
         elevation: 0,
-        backgroundColor: const Color(0x6a1b9a).withOpacity(0.8),
+        backgroundColor: const Color(0xFF1280C4).withOpacity(0.8),
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            run(),
-            SpringButton(
-              SpringButtonType.OnlyScale,
-              button(
-                "Sign out",
-                Colors.purpleAccent[700],
-              ),
-              onTapDown: (_) => signOut(),
+          child: Column(
+        children: <Widget>[
+          run(),
+          SpringButton(
+            SpringButtonType.OnlyScale,
+            button(
+              "Sign out",
+              Colors.purpleAccent[700],
             ),
-          ],
-        )
-      ),
+            onTapDown: (_) => signOut(),
+          ),
+        ],
+      )),
     );
   }
 }

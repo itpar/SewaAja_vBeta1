@@ -129,30 +129,9 @@ class _LoginState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset('assets/images/logo.png',
-                            height: 200,
-                            width: 200,),
-                          SizedBox(
-                            height: 20,
-                            child: Text(
-                              "alcohol verification app",
-                              style: TextStyle(
-                                  color: Colors.blue[900], fontSize: 16.0),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            height: 50,
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  color: Colors.blue, fontSize: 35.0, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
+                            height: 250,
+                            width: 250,),
+
                           //card for Email TextFormField
                           Card(
                             elevation: 6.0,
@@ -173,7 +152,7 @@ class _LoginState extends State<LoginPage> {
                                     padding:
                                     EdgeInsets.only(left: 20, right: 15),
                                     child:
-                                    Icon(Icons.person, color: Colors.blue),
+                                    Icon(Icons.person, color: const Color(0xFF1280C4).withOpacity(0.8)),
                                   ),
                                   contentPadding: EdgeInsets.all(18),
                                   labelText: "Email/ Username"),
@@ -200,7 +179,7 @@ class _LoginState extends State<LoginPage> {
                                 prefixIcon: Padding(
                                   padding: EdgeInsets.only(left: 20, right: 15),
                                   child: Icon(Icons.security,
-                                      color: Colors.blue),
+                                      color: const Color(0xFF1280C4).withOpacity(0.8)),
                                 ),
                                 suffixIcon: IconButton(
                                   onPressed: showHide,
@@ -222,7 +201,7 @@ class _LoginState extends State<LoginPage> {
                                 "new user? create account",
                                 style: TextStyle(fontSize: 18.0),
                               ),
-                              textColor: Colors.blue[800],
+                              textColor: const Color(0xFF1280C4).withOpacity(0.8),
                               color: Colors.white,
                               onPressed: () {
                                 Navigator.push(
@@ -249,7 +228,7 @@ class _LoginState extends State<LoginPage> {
                                       style: TextStyle(fontSize: 18.0),
                                     ),
                                     textColor: Colors.white,
-                                    color: Colors.blue[800],
+                                    color: const Color(0xFF1280C4).withOpacity(0.8),
                                     onPressed: () {
                                       check();
                                     }),

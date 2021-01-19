@@ -23,6 +23,7 @@ dependencies:
   # Navigation bar lib
   bottom_navy_bar: ^5.2.0
   spring_button:
+  google_fonts: ^1.1.1
 
   barcode_scan: ^1.0.0
 
