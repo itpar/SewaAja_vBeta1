@@ -249,7 +249,7 @@ class _ProfileState extends State<Profile> {
             SpringButtonType.OnlyScale,
             button(
               "Sign out",
-              Colors.purpleAccent[700],
+              Color(0xFF1280C4).withOpacity(0.8),
             ),
             onTapDown: (_) => signOut(),
           ),

@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 
+///////////////////////////////////////////////////////////////////////////
+///// MODELS //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
 class Assetmobil {
   int mobilid;
   String mobilnoPolisi;
@@ -33,7 +37,9 @@ class Assetmobil {
   }
 }
 
-
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 class Scan extends StatefulWidget {
   const Scan({Key key}) : super(key: key);
@@ -65,10 +71,19 @@ Widget button(String text, Color color) {
   );
 }
 
+///////////////////////////////////////////////////////////////////////////
+//// MAIN API URL & FETCH DATA ////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 class _ScanState extends State<Scan> {
 
   final String apiURL = 'https://api.par-mobile.com/cekaja/readAssetMobilJson-2.php';
+  bool _ready = false;
+//  List<dynamic> _lstDataSiswa = [];
+//  String _statusText = "";
+  TextEditingController _txtSearch = TextEditingController();
+  bool _flagAllowSearch = true;
+
 
   Future<List<Assetmobil>> fetchAssets() async {
     var response = await http.get(apiURL);
@@ -91,6 +106,11 @@ class _ScanState extends State<Scan> {
         builder: (context) => SecondScreenState(dataHolder.toString())));
   }
 
+
+///////////////////////////////////////////////////////////////////////////
+///// MAIN PAGE WIDGET ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Assetmobil>>(
@@ -101,39 +121,95 @@ class _ScanState extends State<Scan> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text("sakoaks"),
+            title: Text("CekAja"),
             backgroundColor: Colors.blueAccent,
           ),
+          body: Container(
+            child: Column(
+              children: [
+                Container(
+                  height: 50,
+                  child: TextField(
+                      controller: _txtSearch,
+                      onChanged: (filterText) {
+                        //. supaya efektif pencarianya, pakai timeout bukan per karakter
+                        if (_flagAllowSearch == true) {
+                          _flagAllowSearch = false;
 
-
-          body: ListView(
-            children: snapshot.data
-                .map((data) => Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    navigateToNextActivity(context, data.mobilnoPolisi);
-                  },
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
-                            child: Text(data.mobilnoPolisi,
-                                style: GoogleFonts.roboto(fontSize: 20),
-                                textAlign: TextAlign.left))
-                      ]),
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            _flagAllowSearch = true;
+                            setState(() {
+                              _ready = false;
+                            });
+                            //                        _loadData(_txtSearch.text).then((d) {
+                            //                          setState(() {
+                            //                            _ready = true;
+                            //                          });
+                            //                        });
+                          });
+                        }
+                        //                      _scanner();
+                      },
+                      style: TextStyle(color: Colors.black87),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                        prefixIcon: Icon(Icons.search),
+                        prefixStyle: TextStyle(color: Colors.blue),
+                        hintText: "Cari siswa..",
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.red.withOpacity(0.2), width: 32.0),
+                            borderRadius: BorderRadius.circular(0.0)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.red.withOpacity(0.2), width: 32.0),
+                            borderRadius: BorderRadius.circular(0.0)
+                        ),
+                      )
+                  ),
                 ),
-                Divider(color: Colors.black),
+                Expanded(
+                  child: ListView(
+                    children: snapshot.data
+                        .map((data) => Container(
+                          child: Column(
+                      children: <Widget>[
+
+                          GestureDetector(
+                            onTap: () {
+                              navigateToNextActivity(context, data.mobilnoPolisi);
+                            },
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+                                      child: Text(data.mobilnoPolisi,
+                                          style: GoogleFonts.roboto(fontSize: 20),
+                                          textAlign: TextAlign.left))
+                                ]),
+                          ),
+                          Divider(color: Colors.black),
+                      ],
+                    ),
+                        ))
+                        .toList(),
+                  ),
+                ),
               ],
-            ))
-                .toList(),
+            ),
           ),
         );
       },
     );
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////
+///// Second Page Route ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 class SecondScreenState extends StatefulWidget {
   final String noPolisi;
@@ -149,7 +225,10 @@ class SecondScreen extends State<SecondScreenState> {
 
   SecondScreen(this.noPolisi);
 
-  // API URL
+///////////////////////////////////////////////////////////////////////////
+//// second page API URL & FETCH DATA /////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
   var url = 'https://api.par-mobile.com/cekaja/getAssetMobilJson-2.php';
 
   Future<List<Assetmobil>> fetchAssets() async {
@@ -172,6 +251,10 @@ class SecondScreen extends State<SecondScreenState> {
     }
   }
 
+///////////////////////////////////////////////////////////////////////////
+// DETAIL ITEM ////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -188,7 +271,6 @@ class SecondScreen extends State<SecondScreenState> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData)
                   return Center(child: CircularProgressIndicator());
-
                 return ListView(
                   children: snapshot.data
                       .map((data) => Column(
@@ -203,17 +285,16 @@ class SecondScreen extends State<SecondScreenState> {
                             children: [
                               Padding(
                                   padding:
-                                  EdgeInsets.fromLTRB(0, 20, 0, 10),
-                                  child: Text(
-                                      'ID = ' + data.mobilid.toString(),
-                                      style: GoogleFonts.roboto(fontSize: 20))),
-                              Padding(
-                                  padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                  child: Text(
-                                      'No. Polisis = ' +
-                                          data.mobilnoPolisi,
-                                      style: GoogleFonts.roboto(fontSize: 20))),
+                                  child: Column(
+                                    children: [
+                                      Text('No. Polisi',
+                                          style: GoogleFonts.roboto(fontSize: 20)),
+                                      Text(data.mobilnoPolisi,
+                                          style: GoogleFonts.roboto(fontSize: 40)),
+                                    ],
+                                  )
+                              ),
                               Padding(
                                   padding:
                                   EdgeInsets.fromLTRB(0, 0, 0, 10),
