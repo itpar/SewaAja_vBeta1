@@ -11,6 +11,7 @@ import 'package:spring_button/spring_button.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:alco_safe/ui/myseparator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key key}) : super(key: key);
@@ -156,24 +157,56 @@ class _ProfileState extends State<Profile> {
                       children: [
                         const MySeparator(color: Colors.grey),
                         ListTile(
-                          title: Text("E-Mail Adress"),
-                          subtitle: Text(email),
+                          title: Text("E-Mail Adress",
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  17)),
+                          subtitle: Text(email,
+                              style: GoogleFonts.roboto(
+                              fontSize:
+                              22,
+                              textStyle:
+                              TextStyle(color: Colors.black))),
                         ),
                         const MySeparator(color: Colors.grey),
                         ListTile(
-                          title: Text("No. Id Karyawan"),
-                          subtitle: Text(cardno),
+                          title: Text("No. Id Karyawan",
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  17)),
+                          subtitle: Text(cardno,
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  22,
+                                  textStyle:
+                                  TextStyle(color: Colors.black))),
                         ),
                         const MySeparator(color: Colors.grey),
                         ListTile(
-                          title: Text("Username"),
-                          subtitle: Text(username),
+                          title: Text("Username",
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  17)),
+                          subtitle: Text(username,
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  22,
+                                  textStyle:
+                                  TextStyle(color: Colors.black))),
                         ),
                         const MySeparator(color: Colors.grey),
-                        ListTile(
-                          title: Text("Username"),
-                          subtitle: Text(username),
-                        ),
+                        //ListTile(
+                          //title: Text("Username",
+                            //  style: GoogleFonts.roboto(
+                              //    fontSize:
+                                //  17)),
+                       //   subtitle: Text(username,
+                         //     style: GoogleFonts.roboto(
+                           //       fontSize:
+                             //     22,
+                               //   textStyle:
+                                 // TextStyle(color: Colors.black))),
+                       // ),
                       ],),
 
                   ],
