@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
             BottomNavyBarItem(
               icon: Icon(Icons.camera_enhance),
               title: Text('Scan'),
-              activeColor: Colors.red,
+              activeColor: const Color(0xFF1280C4).withOpacity(0.8),
               inactiveColor: Colors.blueGrey,
             ),
             BottomNavyBarItem(

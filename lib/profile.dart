@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:alco_safe/scan.dart';
 import 'package:alco_safe/ui/background.dart';
 
@@ -8,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spring_button/spring_button.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:alco_safe/ui/myseparator.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key key}) : super(key: key);
@@ -112,7 +115,10 @@ class _ProfileState extends State<Profile> {
       // ignore: missing_return
       builder: (BuildContext context, snapshot) {
         if (snapshot.data.toString() == "true") {
-          return Column(
+          return
+
+
+            Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Stack(
@@ -141,70 +147,37 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(
                 width: 1,
-                height: 80,
+                height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text("Email address :",
-                      style: new TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purpleAccent)),
-                  Text(
-                    email,
-                    style: new TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 1,
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text("User Name :",
-                      style: new TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purpleAccent)),
-                  Text(
-                    username,
-                    style: new TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 1,
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text("Credit Card :",
-                      style: new TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purpleAccent)),
-                  Text(
-                    cardno,
-                    style: new TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 1,
-                height: 150,
+              Card(
+                child: Column(
+                  children: [
+                    Flex(direction: Axis.vertical,
+                      children: [
+                        const MySeparator(color: Colors.grey),
+                        ListTile(
+                          title: Text("E-Mail Adress"),
+                          subtitle: Text(email),
+                        ),
+                        const MySeparator(color: Colors.grey),
+                        ListTile(
+                          title: Text("No. Id Karyawan"),
+                          subtitle: Text(cardno),
+                        ),
+                        const MySeparator(color: Colors.grey),
+                        ListTile(
+                          title: Text("Username"),
+                          subtitle: Text(username),
+                        ),
+                        const MySeparator(color: Colors.grey),
+                        ListTile(
+                          title: Text("Username"),
+                          subtitle: Text(username),
+                        ),
+                      ],),
+
+                  ],
+                ),
               ),
             ],
           );
@@ -241,20 +214,22 @@ class _ProfileState extends State<Profile> {
         elevation: 0,
         backgroundColor: const Color(0xFF1280C4).withOpacity(0.8),
       ),
-      body: Center(
-          child: Column(
-        children: <Widget>[
-          run(),
-          SpringButton(
-            SpringButtonType.OnlyScale,
-            button(
-              "Sign out",
-              Color(0xFF1280C4).withOpacity(0.8),
+      body: SingleChildScrollView(
+        child: Center(
+            child: Column(
+          children: <Widget>[
+            run(),
+            SpringButton(
+              SpringButtonType.OnlyScale,
+              button(
+                "Sign out",
+                Color(0xFF1280C4).withOpacity(0.8),
+              ),
+              onTapDown: (_) => signOut(),
             ),
-            onTapDown: (_) => signOut(),
-          ),
-        ],
-      )),
+          ],
+        )),
+      ),
     );
   }
 }
