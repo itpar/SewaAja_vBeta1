@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alco_safe/ui/routes.dart';
+import 'package:alco_safe/Splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      routes: routes,
+      home: SplashScreen(),
     );
   }
 }
