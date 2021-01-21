@@ -127,7 +127,7 @@ class _ScanState extends State<Scan> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text("CekAja"),
+            title: Text("Data Assets"),
             backgroundColor: Colors.blueAccent,
           ),
           body: Padding(

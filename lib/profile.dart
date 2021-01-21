@@ -184,7 +184,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         const MySeparator(color: Colors.grey),
                         ListTile(
-                          title: Text("No. Id Karyawan",
+                          title: Text("NIK",
                               style: GoogleFonts.roboto(
                                   fontSize:
                                   17)),
@@ -257,7 +257,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("profile"),
+        title: Text("User Profile"),
         elevation: 0,
         backgroundColor: const Color(0xFF1280C4).withOpacity(0.8),
       ),
