@@ -54,10 +54,14 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _buildAvatar() {
-    return new CircleAvatar(
-      backgroundImage: new NetworkImage(
-          "http://api.par-mobile.com/cekaja/users/" + username + ".jpg"),
-      radius: 90.0,
+    return CircleAvatar(
+      radius: 90,
+      backgroundColor: Colors.white,
+      child: new CircleAvatar(
+        backgroundImage: new NetworkImage(
+            "http://api.par-mobile.com/cekaja/users/" + username + ".jpg"),
+        radius: 80.0,
+      ),
     );
   }
 
@@ -129,18 +133,28 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        _buildAvatar(),
-                        SizedBox(
-                          width: 1,
-                          height: 15,
+                        Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 00.0)),
+                        Column(
+                          children: [
+                            Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 20.0)),
+                            Text(
+                              fname + " " + sname,
+                              style: GoogleFonts.roboto(
+                                  fontSize:
+                                  29,
+                                fontWeight: FontWeight.bold,
+                                  textStyle:
+                                  TextStyle(color: Colors.white)),
+                            ),
+                            Padding(padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0)),
+                            _buildAvatar(),
+                            SizedBox(
+                              width: 1,
+                              height: 15,
+                            ),
+                          ],
                         ),
-                        Text(
-                          fname + " " + sname,
-                          style: new TextStyle(
-                              fontSize: 27.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
+
                       ],
                     ),
                   ),
