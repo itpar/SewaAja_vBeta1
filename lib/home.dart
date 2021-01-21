@@ -53,8 +53,8 @@ class _HomeState extends State<Home> {
           }),
           items: [
             BottomNavyBarItem(
-              icon: Icon(Icons.camera_enhance),
-              title: Text('Scan'),
+              icon: Icon(Icons.car_rental),
+              title: Text('Data'),
               activeColor: const Color(0xFF1280C4).withOpacity(0.8),
               inactiveColor: Colors.blueGrey,
             ),
