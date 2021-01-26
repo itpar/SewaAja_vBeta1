@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:alco_safe/ui/myclip.dart';
+import 'package:alco_safe/whatsapp/whatsapp.dart';
 
 ///////////////////////////////////////////////////////////////////////////
 ///// MODELS //////////////////////////////////////////////////////////////
@@ -247,8 +248,8 @@ class SecondScreenState extends StatefulWidget {
 }
 
 class SecondScreen extends State<SecondScreenState> {
-  final String noPolisi;
 
+  final String noPolisi;
   SecondScreen(this.noPolisi);
 
 ///////////////////////////////////////////////////////////////////////////
@@ -276,6 +277,10 @@ class SecondScreen extends State<SecondScreenState> {
       throw Exception('Failed to load data from Server.');
     }
   }
+
+///////////////////////////////////////////////////////////////////////////
+// DETAIL ITEM ////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////
 // DETAIL ITEM ////////////////////////////////////////////////////////////
@@ -508,89 +513,35 @@ class SecondScreen extends State<SecondScreenState> {
                                                     )),
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////// Keterangan /////////////////////
+////////////////////////////////////////////////////// refNumberQrCode //////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
                                                 Padding(
                                                     padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 0, 0, 5),
+                                                    EdgeInsets.fromLTRB(
+                                                        0, 0, 0, 5),
                                                     child: Row(
+
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .dehaze_rounded,
-                                                            size: 50.0, color: Colors.blueAccent,
+                                                          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
+                                                          child: Container(
+                                                            width: 350,
+                                                            height: 50,
+                                                            child: MaterialButton(
+                                                              onPressed: (){
+                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => LaunchFlutter()),);
+                                                              },
+                                                              child: Text(
+                                                                  "Pesan Mobil", style: TextStyle(color: Colors.white),
+                                                                ),
+                                                            ),
+                                                            decoration: BoxDecoration(
+                                                              borderRadius: BorderRadius.circular(10),
+                                                              color: Colors.blueAccent,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            children: [
-                                                              ListTile(
-                                                                title: Text(
-                                                                    'Keterangan',
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            17)),
-                                                                subtitle: Text(
-                                                                    data
-                                                                        .mobilketerangan,
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            22,
-                                                                        textStyle:
-                                                                            TextStyle(color: Colors.black))),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )),
-
-/////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////// Status /////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-
-                                                Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 0, 0, 5),
-                                                    child: Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Icon(
-                                                            Icons.padding,
-                                                            size: 50.0, color: Colors.blueAccent,
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            children: [
-                                                              ListTile(
-                                                                title: Text(
-                                                                    'Status',
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            17)),
-                                                                subtitle: Text(
-                                                                    data
-                                                                        .mobilstatus,
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            22,
-                                                                        textStyle:
-                                                                            TextStyle(color: Colors.black))),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
+                                                        )
                                                       ],
                                                     )),
 
@@ -598,44 +549,6 @@ class SecondScreen extends State<SecondScreenState> {
 ////////////////////////////////////////////////////// refNumberQrCode //////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-                                                Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 0, 0, 5),
-                                                    child: Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Icon(
-                                                            Icons.qr_code_sharp,
-                                                            size: 50.0, color: Colors.blueAccent,
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            children: [
-                                                              ListTile(
-                                                                title: Text(
-                                                                    'QR Ref',
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            17)),
-                                                                subtitle: Text(
-                                                                    data
-                                                                        .mobilrefNumberQrCode,
-                                                                    style: GoogleFonts.roboto(
-                                                                        fontSize:
-                                                                            25,
-                                                                        textStyle:
-                                                                            TextStyle(color: Colors.black))),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )),
                                               ]),
                                         )
                                       ],
@@ -651,3 +564,4 @@ class SecondScreen extends State<SecondScreenState> {
             )));
   }
 }
+

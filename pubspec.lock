@@ -146,6 +146,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  flutter_launch:
+    dependency: "direct main"
+    description:
+      name: flutter_launch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -153,6 +160,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.5"
+  flutter_open_whatsapp:
+    dependency: "direct main"
+    description:
+      name: flutter_open_whatsapp
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
