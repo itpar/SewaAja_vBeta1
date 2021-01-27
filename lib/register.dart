@@ -90,7 +90,7 @@ class _RegisterState extends State<Register> {
 // =============================================================================
   Future<List> save() async {
     final response = await http
-        .post("http://api.par-mobile.com/cekaja/register.php", body: {
+        .post("http://api.par-mobile.com/sewaja/register.php", body: {
       "username": username,
       "fname": fname,
       "sname": sname,

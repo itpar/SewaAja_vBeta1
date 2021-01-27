@@ -1,5 +1,6 @@
 import 'package:alco_safe/profile.dart';
 import 'package:alco_safe/scan.dart';
+import 'package:alco_safe/uwu.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class _HomeState extends State<Home> {
     Profile(
       key: PageStorageKey('Page2'),
     ),
+
   ];
   final PageStorageBucket bucket = PageStorageBucket();
 
@@ -64,6 +66,7 @@ class _HomeState extends State<Home> {
               activeColor: const Color(0xFF1280C4).withOpacity(0.8),
               inactiveColor: Colors.blueGrey,
             ),
+
           ],
         )
     );

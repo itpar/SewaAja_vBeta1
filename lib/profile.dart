@@ -48,6 +48,7 @@ class _ProfileState extends State<Profile> {
         width: screenWidth,
         height: 280.0,
         fit: BoxFit.cover,
+
       ),
       color: const Color(0xFF1280C4),
     );
@@ -59,7 +60,7 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Colors.white,
       child: new CircleAvatar(
         backgroundImage: new NetworkImage(
-            "http://api.par-mobile.com/cekaja/users/" + username + ".jpg"),
+            "http://api.par-mobile.com/sewaja/users/" + username + ".jpg"),
         radius: 80.0,
       ),
     );
@@ -77,7 +78,7 @@ class _ProfileState extends State<Profile> {
 
   Future<bool> getInfo() async {
     final res =
-        await http.post("http://api.par-mobile.com/cekaja/profile.php", body: {
+        await http.post("http://api.par-mobile.com/sewaja/profile.php", body: {
       "name": name,
     });
 
@@ -88,7 +89,7 @@ class _ProfileState extends State<Profile> {
     cardno = lis['cardno'];
     email = lis['email'];
 
-    link = "http://api.par-mobile.com/cekaja/users/" + username + ".jpg";
+    link = "http://api.par-mobile.com/sewaja/users/" + username + ".jpg";
 
     // only for debug
     print(username);

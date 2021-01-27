@@ -43,7 +43,7 @@ class _LoginState extends State<LoginPage> {
   //    Login function
   Future<List> login() async {
     final response = await http
-        .post("http://api.par-mobile.com/cekaja/login.php", body: {
+        .post("http://api.par-mobile.com/sewaja/login.php", body: {
       "email": email.text,
       "password": pass.text
     });
